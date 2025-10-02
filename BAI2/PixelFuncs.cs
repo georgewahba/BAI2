@@ -35,19 +35,19 @@
         public static byte RoodWaarde(uint pixelvalue)
         {
             // *** IMPLEMENTATION HERE *** //
-            return 0;
+            return (byte)((pixelvalue >> 16) & 0xFFu);
         }
 
         public static byte GroenWaarde(uint pixelvalue)
         {
             // *** IMPLEMENTATION HERE *** //
-            return 0;
+            return (byte)((pixelvalue >> 8) & 0xFFu);
         }
 
         public static byte BlauwWaarde(uint pixelvalue)
         {
             // *** IMPLEMENTATION HERE *** //
-            return 0;
+            return (byte)((pixelvalue) & 0xFFu);
         }
 
         public static uint Steganografie(uint pixelvalue)
