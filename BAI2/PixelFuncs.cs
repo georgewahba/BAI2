@@ -35,6 +35,13 @@
         public static byte RoodWaarde(uint pixelvalue)
         {
             // *** IMPLEMENTATION HERE *** //
+            // Haal de rode kleurcomponent (0-255) uit een 32-bit pixelwaarde (ARGB of RGB-formaat).
+            // 1. (pixelvalue >> 16) schuift de bits 16 posities naar rechts,
+            //    waardoor de rode component in de onderste 8 bits komt te staan.
+            // 2. & 0xFFu maskeert alles behalve de onderste 8 bits,
+            //    zodat alleen de rode waarde overblijft.
+            // 3. (byte)(...) cast het resultaat naar een byte (0-255).
+            // Dit geldt ook voor de methods GroenWaarde en BlauwWaarde.
             return (byte)((pixelvalue >> 16) & 0xFFu);
         }
 
