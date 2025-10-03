@@ -83,8 +83,6 @@
             // (Hint: kijk naar de eerste 4 bytes van de gedecodeerde data.)
 
             // *** IMPLEMENTATION HERE *** //
-            return 0xFF000000u | (pixelvalue & 0x00FFFFFFu);
-
             return 0;
         }
     }
