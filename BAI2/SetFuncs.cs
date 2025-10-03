@@ -72,7 +72,16 @@ namespace BAI
             // Gebruik set-operatoren op 1 of meer van de sets 'alle kleuren' /
             // 'blauwtinten' / 'donkere kleuren'
             // Gebruik dus GEEN loop
-            return new HashSet<uint>();
+
+            //Pakt alle kleuren en blauwtinten en stop deze in variabelen 
+            //Maakt een nieuwe hasset van alle kleuren en haalt alle blauwtinten daaruit weg.
+            //bijgewerkte hasset zonder blauwtinten wordt gereturned
+            var alleKleuren = AlleKleuren(pixeldata);
+            var blauw = BlauwTinten(pixeldata);
+
+            var nietBlauw = new HashSet<uint>(alleKleuren);
+            nietBlauw.ExceptWith(blauw);
+            return nietBlauw;
         }
 
         public static HashSet<uint> DonkerBlauwTinten(uint[] pixeldata)
@@ -81,7 +90,15 @@ namespace BAI
             // Gebruik set-operatoren op 1 of meer van de sets 'alle kleuren' /
             // 'blauwtinten' / 'donkere kleuren'
             // Gebruik dus GEEN loop
-            return new HashSet<uint>();
+
+            //Hetzelfde als NietBlauwTinten, maar hier kijken we naar alle waarden in DonkereKleuren die overeen komen met BlauwTinten
+            //Alle overeenkomende blauwtinten uit donkere kleuren worden gereturned
+            var alleDonkereKleuren = DonkereKleuren(pixeldata);
+            var blauw = BlauwTinten(pixeldata);
+
+            var nietBlauw = new HashSet<uint>(alleDonkereKleuren);
+            nietBlauw.IntersectWith(blauw);
+            return nietBlauw;
         }
     }
 }
