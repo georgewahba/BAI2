@@ -49,7 +49,7 @@
         {
             // *** IMPLEMENTATION HERE *** //
             return (byte)((pixelvalue >> 8) & 0xFFu);
-        }
+        }   
 
         public static byte BlauwWaarde(uint pixelvalue)
         {
@@ -60,7 +60,17 @@
         public static uint Steganografie(uint pixelvalue)
         {
             // *** IMPLEMENTATION HERE *** //
-            return 0;
+
+            //we mogen alleen bitwise operators gebruiken om 
+            //de steganografie zichtbaar te maken 
+            //in de minst-significante bit van het rode kanaal
+            // >> 16 schuift de rode byte naar rechts, & 1u haalt alleen bit 0 eruit (0 of 1).
+            uint bit = (pixelvalue >> 16) & 1u;
+
+            // Als de bit = 1, geef een witte pixel terug (0xFFFFFFFF).
+            // Als de bit = 0, geef een zwarte pixel terug (0xFF000000).
+            // Hiermee maak je het verborgen zwart/wit beeld zichtbaar.
+            return bit == 1u ? 0xFFFFFFFFu : 0xFF000000u;
         }
 
 
@@ -73,6 +83,8 @@
             // (Hint: kijk naar de eerste 4 bytes van de gedecodeerde data.)
 
             // *** IMPLEMENTATION HERE *** //
+            return 0xFF000000u | (pixelvalue & 0x00FFFFFFu);
+
             return 0;
         }
     }
